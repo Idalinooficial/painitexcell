@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
         }
 
         #Conteiner {
-            width: 400px;
+            width: 90%;
+            max-width: 400px;
             margin: 50px auto;
             padding: 20px;
             position: relative;
@@ -23,18 +25,10 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Estilos para os elementos de login */
-        h1 {
-            color: #fff;
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
+        h1,
         h3 {
             color: #fff;
             text-align: center;
-            font-size: 15px;
             margin-bottom: 20px;
         }
 
@@ -77,24 +71,24 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Ajuste para mover um pouco para cima */
-            height: 50%; /* Ajuste para o espaço extra acima do spinner */
+            align-items: center;
+            height: 50px;
         }
 
         .spinner {
             width: 50px;
             height: 50px;
-            background-color: transparent; /* Cor do spinner vermelho */
+            background-color: transparent;
             border-radius: 50%;
             border: 12px solid #ff0f24;
             border-top: 12px solid transparent;
             animation: loading 1s linear infinite;
-          }
+        }
 
         @keyframes loading {
-                to {
-                  transform: rotate(360deg);
-                }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .error-icon {
@@ -119,6 +113,20 @@
             justify-content: center;
             align-items: center;
         }
+
+        /* Responsividade */
+        @media screen and (max-width: 500px) {
+            #Conteiner {
+                margin: 20px auto;
+                padding: 10px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+            h3 {
+                font-size: 14px;
+            }
+        }
     </style>
     <script>
         function fazerLogin() {
@@ -132,13 +140,13 @@
                 var form = document.querySelector("form");
                 var inputs = form.querySelectorAll("input");
 
-                fusco.style.display = "flex"; // Mostra o fundo fusco
+                fusco.style.display = "flex";
                 spinner.style.display = "block";
                 spinner.classList.add("spin-animation");
 
                 setTimeout(function () {
                     inputs.forEach(function (input) {
-                        input.value = ""; // Limpa os campos
+                        input.value = "";
                     });
                     spinner.classList.remove("spin-animation");
                     window.location.href = "Pain-itexcell.html";
@@ -153,12 +161,13 @@
                 errorIcon.style.display = "inline-block";
                 var inputs = document.querySelectorAll("input");
                 inputs.forEach(function (input) {
-                    input.value = ""; // Limpa os campos
+                    input.value = "";
                 });
             }
         }
     </script>
 </head>
+
 <body>
     <h1>FAÇA LOGIN PAIN-ITEXCELL</h1>
     <h3>PARA CRIAR UMA LISTA IPTV</h3>
@@ -178,4 +187,6 @@
     </div>
     <div id="fusco" class="fusco"></div>
 </body>
+
 </html>
+
