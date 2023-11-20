@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painitexcell</title>
+    <style>
+        body {
+            background-color: #141414;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #Conteiner {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+            background-color: #111;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Estilos para os elementos de login */
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #fff;
+            text-align: center;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #e50914;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        button:hover {
+            background-color: #ff0f24;
+        }
+
+        .spinner-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Ajuste para mover um pouco para cima */
+            height: 50%; /* Ajuste para o espaço extra acima do spinner */
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            background-color: transparent; /* Cor do spinner vermelho */
+            border-radius: 50%;
+            border: 12px solid #ff0f24;
+            border-top: 12px solid transparent;
+            animation: loading 1s linear infinite;
+          }
+
+        @keyframes loading {
+                to {
+                  transform: rotate(360deg);
+                }
+        }
+
+        .error-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #e50914;
+            font-size: 20px;
+            display: none;
+        }
+
+        .fusco {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        function fazerLogin() {
+            var usuario = document.getElementById("user").value;
+            var senha = document.getElementById("password").value;
+            var spinner = document.getElementById("spinner");
+            var errorIcon = document.getElementById("error-icon");
+            var fusco = document.getElementById("fusco");
+
+            if (usuario === "admin" && senha === "admin") {
+                var form = document.querySelector("form");
+                var inputs = form.querySelectorAll("input");
+
+                fusco.style.display = "flex"; // Mostra o fundo fusco
+                spinner.style.display = "block";
+                spinner.classList.add("spin-animation");
+
+                setTimeout(function () {
+                    inputs.forEach(function (input) {
+                        input.value = ""; // Limpa os campos
+                    });
+                    spinner.classList.remove("spin-animation");
+                    window.location.href = "Pain-itexcell.html";
+                }, 4000);
+
+            } else {
+                if (senha !== "admin") {
+                    alert("Palavra-passe incorreta. Tente novamente.");
+                } else {
+                    alert("Usuário incorreto. Tente novamente.");
+                }
+                errorIcon.style.display = "inline-block";
+                var inputs = document.querySelectorAll("input");
+                inputs.forEach(function (input) {
+                    input.value = ""; // Limpa os campos
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>FAÇA LOGIN PAIN-ITEXCELL</h1>
+    <h3>PARA CRIAR UMA LISTA IPTV</h3>
+    <div id="Conteiner">
+        <h1>Login</h1>
+        <form onsubmit="fazerLogin(); return false;">
+            <label for="user">Usuário</label>
+            <input type="text" id="user" required>
+            <label for="password">Senha</label>
+            <input type="password" id="password" required>
+            <div class="spinner-container">
+                <span id="spinner" class="hide spinner"></span>
+            </div>
+            <span id="error-icon" class="error-icon">&#10006;</span>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+    <div id="fusco" class="fusco"></div>
+</body>
+</html>
